@@ -30,3 +30,13 @@ section.house {
     align-items: center;
     justify-content: center;
 }
+
+section.house svg g#scene {
+    opacity: 1;
+    transition: opacity 0.25s;
+  }
+  
+
+section.house svg:hover g#scene {
+    opacity: 0.25;
+  }
