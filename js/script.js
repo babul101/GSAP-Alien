@@ -62,22 +62,24 @@ tvTimeline
 const label = document.querySelector("div.label");
 const links = document.querySelectorAll("svg a");
 
-links.forEach(link => {
-    link.addEventListener('mouseenter',function(){
-        label.classList.add("is-visible")
+links.forEach((link) => {
+  link.addEventListener("mouseenter", function () {
+    label.classList.add("is-visible");
+    label.innerHTML = link.getAttribute("data-label");
+    gsap.to(links, { opacity: 0.25 });
+    gsap.to(link, { opacity: 1 });
+  });
 
-        label.innerHTML = link.getAttribute("data-label")
-    })
+  link.addEventListener("mouseleave", function () {
+    label.classList.remove("is-visible");
 
-    link.addEventListener('mouseleave',function(){
-        label.classList.remove("is-visible")
+    label.innerHTML = "Leave";
+    gsap.to(links, { opacity: 1 })
 
-        label.innerHTML = 'Leave'
-    })
-})
+  });
+});
 
 document.addEventListener("mousemove", function (event) {
-    label.style.left = event.clientX + "px"
-    label.style.top = event.clientY + "px"
-  })
-  
+  label.style.left = event.clientX + "px";
+  label.style.top = event.clientY + "px";
+});
