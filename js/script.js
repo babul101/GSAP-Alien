@@ -9,7 +9,7 @@ storyTimeline
 const parallaxTimeline = gsap.timeline()
 
 parallaxTimeline
-    .set('section.scene img',{x:'350vh'})
+    .set('section.scene img',{x:index => (index * 100 + 300 )+ 'vh'})
     .to('section.scene img',{x:"0vh",duration:10,ease:'linear'})
 
 const eyesTimeline = gsap.timeline({
