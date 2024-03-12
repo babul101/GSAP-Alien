@@ -64,10 +64,20 @@ const links = document.querySelectorAll("svg a");
 
 links.forEach(link => {
     link.addEventListener('mouseenter',function(){
+        label.classList.add("is-visible")
+
         label.innerHTML = link.getAttribute("data-label")
     })
 
     link.addEventListener('mouseleave',function(){
+        label.classList.remove("is-visible")
+
         label.innerHTML = 'Leave'
     })
 })
+
+document.addEventListener("mousemove", function (event) {
+    label.style.left = event.clientX + "px"
+    label.style.top = event.clientY + "px"
+  })
+  
