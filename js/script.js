@@ -1,23 +1,38 @@
-const storyTimeline = gsap.timeline()
+const storyTimeline = gsap.timeline();
+
+gsap.set("section.house", { opacity: 0 });
+
+gsap.set("section.scene", { opacity: 0 });
+gsap.set("section.scene img", { x: (index) => index * 100 + 300 + "vh" });
+
 storyTimeline
-    .set('section.house',{opacity:0})
-    .set('header',{opacity:0})
-    .set('section.scene',{opacity:0})
-    .set('section.scene img',{x:index => (index * 100 + 300 )+ 'vh'})
-    .to('header',{opacity:1})
-    .to('header',{opacity:0,delay:3})
-    .addLabel("startScene")
-    .to('section.scene',{opacity:1},'startScene')
-    .to('section.scene img',{x:"0vh",duration:10,ease:'linear'},'startScene')
-    .addLabel("endScene")
-    .to('section.scene',{opacity:0},'endScene')
-    .to('section.house',{opacity:1},'endScene')
 
+  .to("header", { opacity: 0, delay: 3 })
+  .addLabel("startScene")
+  .to("section.scene", { opacity: 1 }, "startScene")
+  .to(
+    "section.scene img",
+    { x: "0vh", duration: 10, ease: "linear" },
+    "startScene"
+  )
+  .addLabel("endScene")
+  .to("section.scene", { opacity: 0 }, "endScene")
+  .to("section.house", { opacity: 1 }, "endScene");
 
+storyTimeline.pause();
 
+let update;
 
-    
-   
+window.addEventListener("scroll", function () {
+  const pixels = window.pageYOffset;
+  const currentTime = pixels / 300;
+
+  this.cancelAnimationFrame(update);
+
+  update = requestAnimationFrame(function () {
+    storyTimeline.seek(currentTime);
+  });
+});
 
 const eyesTimeline = gsap.timeline({
   repeat: -1,
@@ -95,8 +110,7 @@ links.forEach((link) => {
     label.classList.remove("is-visible");
 
     label.innerHTML = "Leave";
-    gsap.to(links, { opacity: 1 })
-
+    gsap.to(links, { opacity: 1 });
   });
 });
 
