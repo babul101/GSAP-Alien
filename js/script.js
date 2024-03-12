@@ -2,10 +2,15 @@ const storyTimeline = gsap.timeline()
 storyTimeline
     .set('section.house',{opacity:0})
     .set('header',{opacity:0})
-    .to('header',{opacity:1})
+    .to('header',{opacity:0})
     .to('header',{opacity:0,delay:3})
-    .to('section.house',{opacity:1})
+    .to('section.house',{opacity:0})
 
+const parallaxTimeline = gsap.timeline()
+
+parallaxTimeline
+    .set('section.scene img',{x:'350vh'})
+    .to('section.scene img',{x:"0vh",duration:10,ease:'linear'})
 
 const eyesTimeline = gsap.timeline({
   repeat: -1,
