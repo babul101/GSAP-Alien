@@ -1,3 +1,12 @@
+const storyTimeline = gsap.timeline()
+storyTimeline
+    .set('section.house',{opacity:0})
+    .set('header',{opacity:0})
+    .to('header',{opacity:1})
+    .to('header',{opacity:0,delay:3})
+    .to('section.house',{opacity:1})
+
+
 const eyesTimeline = gsap.timeline({
   repeat: -1,
 });
